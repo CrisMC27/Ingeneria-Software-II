@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+import java.util.Date;
 
 
 @Data
@@ -44,7 +44,7 @@ public class Solicitudes implements Serializable{
     private int gastos;
 
     @Column(name = "SOL_FECHA", nullable = false)
-    private String fecha;
+    private Date fecha;
 
     @Column(name = "SOL_COMENTARIO", nullable = false)
     private String comentario;
