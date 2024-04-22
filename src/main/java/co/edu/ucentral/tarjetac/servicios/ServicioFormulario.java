@@ -25,12 +25,12 @@ public class ServicioFormulario implements Serializable {
 
         Solicitudes laSolicitud = repoSoli.save(modelMapper.map(formularioDto, Solicitudes.class));
         return modelMapper.map(laSolicitud, FormularioDto.class);
-    }
+    }/*
     public List<FormularioDto> obtenerEquipos() {
         TypeToken<List<FormularioDto>> typeToken = new TypeToken<>() {};
         return modelMapper.map(repoSoli.findAll(), typeToken.getType());
 
-    }/*
+    }
     public FormularioDto obtenerEquipo(long serial) {
         Solicitudes equipo = repoSoli.findById(serial).orElseThrow(
                 ResourceNotFoundException::new);
