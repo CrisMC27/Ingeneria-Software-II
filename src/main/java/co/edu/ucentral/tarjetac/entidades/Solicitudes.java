@@ -25,6 +25,7 @@ public class Solicitudes implements Serializable{
     @Column(name= "SOL_NOMBRE", nullable = false)
     private String nombre;
 
+
     @Column(name = "SOL_APELLIDO", nullable = false)
     private String apellido;
 
