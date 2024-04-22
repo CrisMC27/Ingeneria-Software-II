@@ -19,13 +19,14 @@ public class Solicitudes implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SOLICITUDES")
     @SequenceGenerator(name = "SEQ_SOLCITUDES", sequenceName = "SEQ_SOLICITUDES", allocationSize = 1)
+
     @Column(name = "SOL_NUMERODESOLICITUD", nullable = false)
     private long serial;
 
-    @Column(name= "SOL_NOMBRE", nullable = false)
+    @Column(name= "SOL_NOMBRES", nullable = false)
     private String nombre;
 
-    @Column(name = "SOL_APELLIDO", nullable = false)
+    @Column(name = "SOL_APELLIDOS", nullable = false)
     private String apellido;
 
     @Column(name = "SOL_CELULAR", nullable = false)
