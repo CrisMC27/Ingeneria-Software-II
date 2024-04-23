@@ -1,6 +1,7 @@
 package co.edu.ucentral.tarjetac.controladores;
 
 import co.edu.ucentral.tarjetac.dto.FormularioDto;
+import co.edu.ucentral.tarjetac.entidades.Solicitudes;
 import co.edu.ucentral.tarjetac.servicios.ServicioFormulario;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
@@ -15,18 +16,24 @@ import java.util.List;
 
 @Log4j2
 @Controller
+@RestController
+@RequestMapping("/api")
 public class ControladorFormularios{
     private static final Logger logger = LogManager.getLogger(ControladorFormularios.class);
 
     @Autowired
     ServicioFormulario servicioFormulario;
-/*
+    @GetMapping("/solicitudes")
+    public List<Solicitudes> listarSolicitudes(){
+        logger.info("Listando todas las solicitudes");
+        return servicioFormulario.obtenerSolicitud();
+    }
     @GetMapping({  "/formularios"})
     public String listarFormularios(Model model){
         logger.info("Verificando ");
-        model.addAttribute("Formularios",servicioFormulario.obtenerEquipos());
+        model.addAttribute("Formularios",servicioFormulario.obtenerSolicitud());
         return "formularios";
-    }*/
+    }
     @GetMapping("/formularios/nuevo")
     public String mostrarFormulario(Model model){
         FormularioDto formularioDto = new FormularioDto();
@@ -39,26 +46,4 @@ public class ControladorFormularios{
         return "redirect:/formularios";
     }
 
-/*
-    @GetMapping("/equipos/modificar/{serial}")
-    public String mostrarFormularioEditar(@PathVariable long serial, Model model){
-        EquipoDto equipoDto = new EquipoDto();
-        model.addAttribute("equipo", servicioEquipos.obtenerEquipo(serial));
-        return "editar_equipo";
-    }
-
-    @PostMapping("/equipos/{serial}")
-    public String modificarEquipo(@PathVariable long serial,@ModelAttribute( "equipo") EquipoDto equipoDto, Model model){
-
-
-        model.addAttribute("equipo", servicioEquipos.actualizar(equipoDto));
-        return "redirect:/equipos";
-    }
-    @GetMapping("/equipos/{serial}")
-    public String eliminarEquipo(@PathVariable long serial){
-
-        servicioEquipos.eliminar(serial);
-
-        return "redirect:/equipos";
-    }*/
 }
