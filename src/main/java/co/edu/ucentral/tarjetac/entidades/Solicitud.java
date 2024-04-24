@@ -12,16 +12,16 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Solicitud")
+@Entity
 @Table(name = "SOLICITUDES")
-public class Solicitudes implements Serializable{
+public class Solicitud implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SOLICITUDES")
-    @SequenceGenerator(name = "SEQ_SOLCITUDES", sequenceName = "SEQ_SOLICITUDES", allocationSize = 1)
+    @SequenceGenerator(name = "SEQ_SOLICITUDES", sequenceName = "SEQ_SOLICITUDES", allocationSize = 1)
 
-    @Column(name = "SOL_NUMERODESOLICITUD", nullable = false)
-    private long serial;
+    @Column(name = "SOL_NUMERO_DE_SOLICITUD", nullable = false)
+    private long numerosolicitud;
 
     @Column(name= "SOL_NOMBRES", nullable = false)
     private String nombre;

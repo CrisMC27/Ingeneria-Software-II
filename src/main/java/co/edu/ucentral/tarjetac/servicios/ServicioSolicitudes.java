@@ -1,7 +1,7 @@
 package co.edu.ucentral.tarjetac.servicios;
 
 import co.edu.ucentral.tarjetac.dto.SolicitudesDto;
-import co.edu.ucentral.tarjetac.entidades.Solicitudes;
+import co.edu.ucentral.tarjetac.entidades.Solicitud;
 import co.edu.ucentral.tarjetac.exception.ResourceNotFoundException;
 import co.edu.ucentral.tarjetac.repositorios.RepositorioSolicitudes;
 import lombok.AllArgsConstructor;
@@ -23,11 +23,11 @@ public class ServicioSolicitudes implements Serializable {
 
     public List<SolicitudesDto> obtenerSolicitudes() {
         TypeToken<List<SolicitudesDto>> typeToken = new TypeToken<>(){};
-        return modelMapper.map(repoSoli.findAll(), typeToken.getType());
+        return modelMapper.map(repoSoli.findSolicitudesBy(), typeToken.getType());
     }
 
     public SolicitudesDto obtenerSolicitud(long serial){
-        Solicitudes solicitud = repoSoli.findById(serial).orElseThrow(
+        Solicitud solicitud = repoSoli.findById(serial).orElseThrow(
                 ResourceNotFoundException::new);
         return modelMapper.map(solicitud, SolicitudesDto.class);
     }
