@@ -36,7 +36,7 @@ public class Solicitud implements Serializable{
     private String correo;
 
     @Column(name = "SOL_DOCUMENTO", nullable = false)
-    private int documento;
+    private int cedula;
 
     @Column(name = "SOL_SALARIO", nullable = false)
     private int salario;
