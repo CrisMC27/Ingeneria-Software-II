@@ -28,20 +28,10 @@ public class ControladorSolicutudesANG {
 
     private ServicioSolicitudes servicioSolicitudes;
 
-    @GetMapping("/")
-    public ResponseEntity<List<SolicitudesDto>> listarSolicitudes(){
-
-        return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudes());
-    }
     @GetMapping("/all")
     public ResponseEntity<List<SolicitudesDto>> listarSolicitudesAll(){
 
         return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudes());
     }
 
-    @GetMapping("/{serial}")
-    public ResponseEntity<SolicitudesDto> obtenerPorId(@PathVariable("serial") Long serial) {
-        log.info( " Ïngresa serial "+ serial);
-        return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitud(serial));
-    }
 }

@@ -26,9 +26,4 @@ public class ServicioSolicitudes implements Serializable {
         return modelMapper.map(repoSoli.findSolicitudesBy(), typeToken.getType());
     }
 
-    public SolicitudesDto obtenerSolicitud(long serial){
-        Solicitud solicitud = repoSoli.findById(serial).orElseThrow(
-                ResourceNotFoundException::new);
-        return modelMapper.map(solicitud, SolicitudesDto.class);
-    }
 }
