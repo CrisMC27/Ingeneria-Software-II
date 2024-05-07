@@ -1,20 +1,20 @@
 package co.edu.ucentral.tarjetac.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString
 public class FormularioDto implements Serializable {
-    private long serial;
+    private long numerosolicitud;
     @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
     @NotBlank(message = "El apellido es obligatorio")
@@ -29,7 +29,5 @@ public class FormularioDto implements Serializable {
     private int salario;
     @NotBlank(message = "El gasto mensual obligatorio")
     private int gastos;
-/*
 
-*/
 }

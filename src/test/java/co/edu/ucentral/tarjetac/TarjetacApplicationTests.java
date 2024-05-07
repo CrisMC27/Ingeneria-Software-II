@@ -2,7 +2,7 @@ package co.edu.ucentral.tarjetac;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import co.edu.ucentral.tarjetac.entidades.Solicitudes;
+import co.edu.ucentral.tarjetac.entidades.Solicitud;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

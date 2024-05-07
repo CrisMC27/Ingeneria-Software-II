@@ -14,13 +14,14 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity(name = "Solicitud")
 @Table(name = "SOLICITUDES")
-public class Solicitudes implements Serializable{
+
+public class Solicitud implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SOLICITUDES")
     @SequenceGenerator(name = "SEQ_SOLCITUDES", sequenceName = "SEQ_SOLICITUDES", allocationSize = 1)
-    @Column(name = "SOL_NUMERODESOLICITUD", nullable = false)
-    private long serial;
+    @Column(name = "SOL_NUMERO_DE_SOLICITUD", nullable = false)
+    private long numerosolicitud;
 
     @Column(name= "SOL_NOMBRE", nullable = false)
     private String nombre;
