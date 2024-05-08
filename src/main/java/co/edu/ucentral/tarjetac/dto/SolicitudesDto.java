@@ -24,7 +24,7 @@ public class SolicitudesDto implements Serializable {
         @NotBlank(message = "El correo es obligatorio")
     private String correo;
         @NotBlank(message = "El documento es obligatorio")
-    private int documento;
+    private int cedula;
         @NotBlank(message = "El salario es obligatorio")
     private int salario;
     @NotBlank(message = "El gasto mensual es obligatorio")
