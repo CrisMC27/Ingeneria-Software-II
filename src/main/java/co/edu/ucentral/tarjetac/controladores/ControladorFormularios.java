@@ -27,7 +27,7 @@ public class ControladorFormularios{
         return "crear_formulario";
     }
     @PostMapping("/formularios")
-    public String registrarEquipo(@ModelAttribute("formulari") FormularioDto formulario) {
+    public String registrarEquipo(@ModelAttribute("formulario") FormularioDto formulario) {
         servicioFormulario.registrar(formulario);
         return "redirect:/formularios";
     }

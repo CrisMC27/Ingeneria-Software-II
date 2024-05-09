@@ -33,7 +33,6 @@ public class ControladorFormulariosANG {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<FormularioDto> crear(@Validated @RequestBody FormularioDto entityDto) {
         entityDto = servicioFormulario.registrar(entityDto);
-
         return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
     }
 
