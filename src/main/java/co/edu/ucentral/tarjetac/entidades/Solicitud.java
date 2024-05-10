@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Date;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +15,6 @@ import java.util.Date;
 @Table(name = "SOLICITUDES")
 
 public class Solicitud implements Serializable{
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SOLICITUDES")
