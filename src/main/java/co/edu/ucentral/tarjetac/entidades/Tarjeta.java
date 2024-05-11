@@ -25,13 +25,13 @@ public class Tarjeta implements Serializable {
     @Column(name = "TAR_CODIGO", nullable = false)
     private long serial;
 
-    @Column(name = "TAR_NUMERO_DE_TARJETA", nullable = false)
-    private int numerotarjeta;
+    @Column(name = "TAR_NUMERO_DE_TARJETA", length = 16,nullable = false)
+    private long numerotarjeta;
 
     @Column(name= "TAR_FECHA_DE_VENCIMIENTO", nullable = false)
     private Date fecha_vec;
 
-    @Column(name = "TAR_DOCUEMENTO_CLIENTE", nullable = false)
+    @Column(name = "TAR_DOCUMENTO", length = 10, nullable = false)
     private int documento;
 
     @Column(name = "TAR_CUPO_DISPONIBLE", nullable = false)
