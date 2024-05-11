@@ -25,5 +25,9 @@ public class ServicioSolicitudes implements Serializable {
         TypeToken<List<SolicitudesDto>> typeToken = new TypeToken<>(){};
         return modelMapper.map(repoSoli.findSolicitudesBy(), typeToken.getType());
     }
+    public SolicitudesDto registrar(SolicitudesDto solicitudesDto) {
+        Solicitud laSolicitud = repoSoli.save(modelMapper.map(solicitudesDto, Solicitud.class));
+        return modelMapper.map(laSolicitud, SolicitudesDto.class);
+    }
 
 }

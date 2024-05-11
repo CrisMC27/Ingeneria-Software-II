@@ -21,17 +21,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/solicitudes")
 @CrossOrigin(origins = "${spring.webmvc.cors.allowed-origins}",
-        methods = {RequestMethod.GET})
+        methods = {RequestMethod.GET,RequestMethod.POST})
+
 
 public class ControladorSolicutudesANG {
     private static final Logger logger = LogManager.getLogger(ControladorSolicitudes.class);
 
+
     private ServicioSolicitudes servicioSolicitudes;
 
     @GetMapping("/all")
-    public ResponseEntity<List<SolicitudesDto>> listarSolicitudesAll(){
+    public ResponseEntity<List<SolicitudesDto>> listarSolicitudesAll() {
 
         return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudes());
+    }
+
+    @PostMapping("/registro")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<SolicitudesDto> crear(@Validated @RequestBody SolicitudesDto entityDto) {
+        entityDto = servicioSolicitudes.registrar(entityDto);
+        return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
     }
 
 }
