@@ -22,12 +22,12 @@ public class TarjetasDto implements Serializable {
     @NotBlank(message = "El documento es obligatorio")
     private int documento;
     @NotBlank(message = "El cupo es obligatorio")
-    private int cupo;
+    private long cupo;
     @NotBlank(message = "La fecha de corte es obligatoria")
     private Date fecha_cor;
     @NotBlank(message = "La fecha limite de pago es obligatoria")
     private Date fecha_lim;
     @NotBlank(message = "El saldo es obligatorio")
-    private int saldo;
+    private long saldo;
 
 }

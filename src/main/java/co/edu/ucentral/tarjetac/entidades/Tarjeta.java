@@ -31,11 +31,11 @@ public class Tarjeta implements Serializable {
     @Column(name= "TAR_FECHA_DE_VENCIMIENTO", nullable = false)
     private Date fecha_vec;
 
-    @Column(name = "TAR_DOCUMENTO", length = 10, nullable = false)
+    @Column(name = "TAR_DOCUMENTO", nullable = false)
     private int documento;
 
     @Column(name = "TAR_CUPO_DISPONIBLE", nullable = false)
-    private int cupo;
+    private long cupo;
 
     @Column(name = "TAR_FECHA_DE_CORTE", nullable = false)
     private Date fecha_cor;
@@ -44,5 +44,5 @@ public class Tarjeta implements Serializable {
     private Date fecha_lim;
 
     @Column(name = "TAR_SALDO_UTILIZADO", nullable = false)
-    private int saldo;
+    private long saldo;
 }
