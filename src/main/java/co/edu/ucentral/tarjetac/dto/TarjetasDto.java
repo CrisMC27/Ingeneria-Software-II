@@ -15,6 +15,8 @@ import java.util.Date;
 
 public class TarjetasDto implements Serializable {
     private long serial;
+    @NotBlank(message = "El codigo de la tarjeta es obligatorio")
+    private int numerotarjeta;
     @NotBlank(message = "La fecha de vencimiento es obligatoria")
     private Date fecha_vec;
     @NotBlank(message = "El documento es obligatorio")

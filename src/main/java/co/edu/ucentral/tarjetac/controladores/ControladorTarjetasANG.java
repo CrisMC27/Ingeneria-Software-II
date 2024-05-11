@@ -18,7 +18,6 @@ import java.util.List;
         methods = {RequestMethod.GET})
 
 public class ControladorTarjetasANG {
-        private static final Logger logger = LogManager.getLogger(ControladorTarjetas.class);
 
     private ServicioTarjetas servicioTarjetas;
 

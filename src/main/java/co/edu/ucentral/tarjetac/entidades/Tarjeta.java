@@ -2,6 +2,7 @@ package co.edu.ucentral.tarjetac.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "TARJETAS")
 
 public class Tarjeta implements Serializable {
@@ -20,8 +22,11 @@ public class Tarjeta implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TARJETAS")
     @SequenceGenerator(name = "SEQ_TARJETAS", sequenceName = "SEQ_TARJETAS", allocationSize = 1)
 
-    @Column(name = "TAR_NUMERO_DE_TARJETA", nullable = false)
+    @Column(name = "TAR_CODIGO", nullable = false)
     private long serial;
+
+    @Column(name = "TAR_NUMERO_DE_TARJETA", nullable = false)
+    private int numerotarjeta;
 
     @Column(name= "TAR_FECHA_DE_VENCIMIENTO", nullable = false)
     private Date fecha_vec;
