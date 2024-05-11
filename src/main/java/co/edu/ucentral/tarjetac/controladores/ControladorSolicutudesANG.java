@@ -1,7 +1,6 @@
 package co.edu.ucentral.tarjetac.controladores;
 
 import co.edu.ucentral.tarjetac.dto.SolicitudesDto;
-import co.edu.ucentral.tarjetac.entidades.Solicitud;
 import co.edu.ucentral.tarjetac.servicios.ServicioSolicitudes;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

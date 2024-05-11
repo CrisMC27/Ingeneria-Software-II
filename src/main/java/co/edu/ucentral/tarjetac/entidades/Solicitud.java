@@ -2,6 +2,7 @@ package co.edu.ucentral.tarjetac.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "SOLICITUDES")
 public class Solicitud implements Serializable{
@@ -28,13 +30,13 @@ public class Solicitud implements Serializable{
     @Column(name = "SOL_APELLIDOS", nullable = false)
     private String apellido;
 
-    @Column(name = "SOL_CELULAR", nullable = false)
+    @Column(name = "SOL_CELULAR", length = 10, nullable = false)
     private int celular;
 
     @Column(name = "SOL_CORREO", nullable = false)
     private String correo;
 
-    @Column(name = "SOL_DOCUMENTO", nullable = false)
+    @Column(name = "SOL_DOCUMENTO", length = 10, nullable = false)
     private int cedula;
 
     @Column(name = "SOL_SALARIO", nullable = false)
