@@ -2,6 +2,7 @@ package co.edu.ucentral.tarjetac.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "SOLICITUDES")
 public class Solicitud implements Serializable{
@@ -38,9 +40,9 @@ public class Solicitud implements Serializable{
     private int cedula;
 
     @Column(name = "SOL_SALARIO", nullable = false)
-    private int salario;
+    private long salario;
 
     @Column(name = "SOL_GASTOS", nullable = false)
-    private int gastos;
+    private long gastos;
 
 }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,8 +25,8 @@ public class SolicitudesDto implements Serializable {
         @NotBlank(message = "El documento es obligatorio")
     private int cedula;
         @NotBlank(message = "El salario es obligatorio")
-    private int salario;
+    private long salario;
     @NotBlank(message = "El gasto mensual es obligatorio")
-    private int gastos;
+    private long gastos;
 
 }

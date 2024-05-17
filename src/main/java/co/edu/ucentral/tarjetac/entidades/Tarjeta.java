@@ -28,6 +28,7 @@ public class Tarjeta implements Serializable {
     @Column(name = "TAR_NUMERO_DE_TARJETA", length = 16,nullable = false)
     private long numerotarjeta;
 
+    @Temporal(TemporalType.DATE)
     @Column(name= "TAR_FECHA_DE_VENCIMIENTO", nullable = false)
     private Date fecha_vec;
 
@@ -37,9 +38,11 @@ public class Tarjeta implements Serializable {
     @Column(name = "TAR_CUPO_DISPONIBLE", nullable = false)
     private long cupo;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "TAR_FECHA_DE_CORTE", nullable = false)
     private Date fecha_cor;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "TAR_FECHA_LIMITE_DE_PAGO", nullable = false)
     private Date fecha_lim;
 
