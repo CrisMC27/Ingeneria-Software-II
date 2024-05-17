@@ -45,4 +45,13 @@ public class Solicitud implements Serializable{
     @Column(name = "SOL_GASTOS", nullable = false)
     private int gastos;
 
+    public void actualizarSolicitud(String nombre, String apellido, int celular, String correo,int cedula, int salario, int gastos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.celular = celular;
+        this.correo = correo;
+        this.cedula = cedula;
+        this.salario = salario;
+        this.gastos = gastos;
+    }
 }

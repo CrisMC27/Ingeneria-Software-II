@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import java.util.ArrayList;
-import java.util.List;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 
 @DataJpaTest
-
 class RepositorioSolicitudesTest {
 
     @Autowired
@@ -20,13 +18,11 @@ class RepositorioSolicitudesTest {
 
     @Autowired
     TestEntityManager testEntityManager;
+
     @DisplayName("Test de crear solicitud")
     @Test
-
     void testCrearSolicitudes() {
-
-        Solicitud solicitud = Solicitud
-                .builder()
+        Solicitud solicitud = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
                 .celular(1234567890)
@@ -42,12 +38,11 @@ class RepositorioSolicitudesTest {
         assertThat(solicitud1.getNumerosolicitud()).isGreaterThan(0);
     }
 
+    @DisplayName("Test de listar solicitudes")
     @Test
-    @DisplayName("Test de obtener todas las solicitudes")
+    void testListarSolicitudes() {
 
-    void testObtenerSolicitudes() {
-        Solicitud solicitud = Solicitud
-                .builder()
+        Solicitud solicitud1 = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
                 .celular(1234567890)
@@ -57,31 +52,30 @@ class RepositorioSolicitudesTest {
                 .gastos(345634)
                 .build();
 
-        Solicitud solicitud1 = Solicitud
-                .builder()
-                .nombre("Samir")
-                .apellido("Gaez")
-                .celular(1237777770)
-                .correo("correo2@gmail.com")
-                .cedula(1233333890)
-                .salario(4344353)
-                .gastos(34563214)
+        Solicitud solicitud2 = Solicitud.builder()
+                .nombre("Juan")
+                .apellido("Perez")
+                .celular(987654321)
+                .correo("juanp@gmail.com")
+                .cedula(987654321)
+                .salario(50000)
+                .gastos(30000)
                 .build();
 
-        Iterable<Solicitud> iterableSolicitudes = repositorioSolicitudes.findAll();
-        List<Solicitud> listasolicitudes = new ArrayList<>();
-        iterableSolicitudes.forEach(listasolicitudes::add);
+        testEntityManager.persist(solicitud1);
+        testEntityManager.persist(solicitud2);
+        testEntityManager.flush();
 
-        assertThat(listasolicitudes).isNotNull();
-        assertThat(listasolicitudes.size()).isEqualTo(2);
+        List<Solicitud> solicitudes = (List<Solicitud>) repositorioSolicitudes.findAll();
+
+        assertThat(solicitudes).isNotNull();
+        assertThat(solicitudes.size()).isGreaterThan(0);
+        assertThat(solicitudes).contains(solicitud1, solicitud2);
     }
-
+    @DisplayName("Test de actualizar una solicitud")
     @Test
-    @DisplayName("Test de actualizar solicitud")
-
     void testActualizarSolicitud() {
-        Solicitud solicitud = Solicitud
-                .builder()
+        Solicitud solicitud = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
                 .celular(1234567890)
@@ -90,14 +84,44 @@ class RepositorioSolicitudesTest {
                 .salario(43453)
                 .gastos(345634)
                 .build();
+        Solicitud solicitudPersistida = testEntityManager.persist(solicitud);
+        testEntityManager.flush();
 
-        Solicitud solicitudsave = repositorioSolicitudes.save(solicitud);
-        solicitudsave.setNombre("Samir");
 
-        Solicitud solicitudupdate = repositorioSolicitudes.save(solicitudsave);
-        Solicitud solicitudRecuperada = repositorioSolicitudes.findById(solicitudupdate.getNumerosolicitud());
+        solicitudPersistida.actualizarSolicitud("Juan", "Ponte", 13133, "coreo@gmail.com", 4521432, 575432,63627);
+        Solicitud solicitudActualizada = repositorioSolicitudes.save(solicitudPersistida);
 
-        assertThat(solicitudRecuperada).isNotNull();
-        assertThat(solicitudRecuperada.getNombre()).isEqualTo("Samir");
+
+        assertThat(solicitudActualizada).isNotNull();
+        assertThat(solicitudActualizada.getNombre()).isEqualTo("Juan");
+        assertThat(solicitudActualizada.getApellido()).isEqualTo("Ponte");
+        assertThat(solicitudActualizada.getCelular()).isEqualTo(13133);
+        assertThat(solicitudActualizada.getCorreo()).isEqualTo("coreo@gmail.com");
+        assertThat(solicitudActualizada.getCedula()).isEqualTo(4521432);
+        assertThat(solicitudActualizada.getSalario()).isEqualTo(575432);
+        assertThat(solicitudActualizada.getGastos()).isEqualTo(63627);
+    }
+    @DisplayName("Test de borrar una solicitud")
+    @Test
+    void testBorrarSolicitud() {
+
+        Solicitud solicitud = Solicitud.builder()
+                .nombre("Kelly")
+                .apellido("Importa")
+                .celular(1234567890)
+                .correo("correo@gmail.com")
+                .cedula(1234567890)
+                .salario(43453)
+                .gastos(345634)
+                .build();
+        Solicitud solicitudPersistida = testEntityManager.persist(solicitud);
+        testEntityManager.flush();
+
+        repositorioSolicitudes.deleteById(solicitudPersistida.getNumerosolicitud());
+        testEntityManager.flush();
+
+
+        Solicitud solicitudBorrada = testEntityManager.find(Solicitud.class, solicitudPersistida.getNumerosolicitud());
+        assertThat(solicitudBorrada).isNull();
     }
 }
