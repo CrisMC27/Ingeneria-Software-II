@@ -1,6 +1,7 @@
 package co.edu.ucentral.tarjetac.servicios;
 
 import co.edu.ucentral.tarjetac.dto.SolicitudesDto;
+import co.edu.ucentral.tarjetac.entidades.Solicitud;
 import co.edu.ucentral.tarjetac.repositorios.RepositorioSolicitudes;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
