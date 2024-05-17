@@ -28,8 +28,8 @@ class RepositorioSolicitudesTest {
                 .celular(1234567890)
                 .correo("correo@gmail.com")
                 .cedula(1234567890)
-                .salario(43453)
-                .gastos(345634)
+                .salario(43453L)
+                .gastos(345634L)
                 .build();
 
         Solicitud solicitud1 = repositorioSolicitudes.save(solicitud);
@@ -48,8 +48,8 @@ class RepositorioSolicitudesTest {
                 .celular(1234567890)
                 .correo("correo@gmail.com")
                 .cedula(1234567890)
-                .salario(43453)
-                .gastos(345634)
+                .salario(43453L)
+                .gastos(345634L)
                 .build();
 
         Solicitud solicitud2 = Solicitud.builder()
@@ -58,8 +58,8 @@ class RepositorioSolicitudesTest {
                 .celular(987654321)
                 .correo("juanp@gmail.com")
                 .cedula(987654321)
-                .salario(50000)
-                .gastos(30000)
+                .salario(50000L)
+                .gastos(30000L)
                 .build();
 
         testEntityManager.persist(solicitud1);
@@ -81,8 +81,8 @@ class RepositorioSolicitudesTest {
                 .celular(1234567890)
                 .correo("correo@gmail.com")
                 .cedula(1234567890)
-                .salario(43453)
-                .gastos(345634)
+                .salario(43453L)
+                .gastos(345634L)
                 .build();
         Solicitud solicitudPersistida = testEntityManager.persist(solicitud);
         testEntityManager.flush();
@@ -111,8 +111,8 @@ class RepositorioSolicitudesTest {
                 .celular(1234567890)
                 .correo("correo@gmail.com")
                 .cedula(1234567890)
-                .salario(43453)
-                .gastos(345634)
+                .salario(43453L)
+                .gastos(345634L)
                 .build();
         Solicitud solicitudPersistida = testEntityManager.persist(solicitud);
         testEntityManager.flush();

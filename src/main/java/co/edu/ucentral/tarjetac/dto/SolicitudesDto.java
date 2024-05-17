@@ -1,14 +1,12 @@
 package co.edu.ucentral.tarjetac.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,8 +24,8 @@ public class SolicitudesDto implements Serializable {
         @NotBlank(message = "El documento es obligatorio")
     private int cedula;
         @NotBlank(message = "El salario es obligatorio")
-    private int salario;
+    private long salario;
     @NotBlank(message = "El gasto mensual es obligatorio")
-    private int gastos;
+    private long gastos;
 
 }

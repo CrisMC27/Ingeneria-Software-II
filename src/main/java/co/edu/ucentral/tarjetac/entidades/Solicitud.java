@@ -40,10 +40,10 @@ public class Solicitud implements Serializable{
     private int cedula;
 
     @Column(name = "SOL_SALARIO", nullable = false)
-    private int salario;
+    private long salario;
 
     @Column(name = "SOL_GASTOS", nullable = false)
-    private int gastos;
+    private long gastos;
 
     public void actualizarSolicitud(String nombre, String apellido, int celular, String correo,int cedula, int salario, int gastos) {
         this.nombre = nombre;
