@@ -12,19 +12,14 @@ import java.io.Serializable;
 @ToString
 public class SolicitudesDto implements Serializable {
     private long numerosolicitud;
-        @NotBlank(message = "El nombre es obligatorio")
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
-        @NotBlank(message = "El apellido es obligatorio")
+    @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
-        @NotBlank(message = "El celular es obligatorio")
     private int celular;
-        @NotBlank(message = "El correo es obligatorio")
+    @NotBlank(message = "El correo es obligatorio")
     private String correo;
-        @NotBlank(message = "El documento es obligatorio")
     private int cedula;
-        @NotBlank(message = "El salario es obligatorio")
-    private long salario;
-    @NotBlank(message = "El gasto mensual es obligatorio")
-    private long gastos;
-
+    private int salario;
+    private int gastos;
 }

@@ -6,10 +6,10 @@ import co.edu.ucentral.tarjetac.repositorios.RepositorioSolicitudes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.modelmapper.ModelMapper;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 
 import java.lang.reflect.Type;
@@ -17,10 +17,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ServicioSolicitudesTest {
+
+    @InjectMocks
+    private ServicioSolicitudes servicioSolicitudes;
 
     @Mock
     private ModelMapper modelMapper;
@@ -28,14 +32,11 @@ public class ServicioSolicitudesTest {
     @Mock
     private RepositorioSolicitudes repoSoli;
 
-    @InjectMocks
-    private ServicioSolicitudes servicioSolicitudes;
-
     private List<Solicitud> solicitudList;
     private List<SolicitudesDto> solicitudesDtoList;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         // Initialize mock data
         Solicitud solicitud1 = new Solicitud();
         Solicitud solicitud2 = new Solicitud();
@@ -60,5 +61,38 @@ public class ServicioSolicitudesTest {
 
         // Validate the result
         assertEquals(solicitudesDtoList, result);
+    }
+
+    @Test
+    void testRegistrar() {
+        SolicitudesDto solicitudDto = new SolicitudesDto();
+        solicitudDto.setNombre("Juan");
+        solicitudDto.setApellido("Perez");
+        solicitudDto.setCelular(123456789);
+        solicitudDto.setCorreo("juan.perez@example.com");
+        solicitudDto.setCedula(987654321);
+        solicitudDto.setSalario(5000);
+        solicitudDto.setGastos(1000);
+
+        Solicitud solicitud = new Solicitud();
+        solicitud.setNombre("Juan");
+        solicitud.setApellido("Perez");
+        solicitud.setCelular(123456789);
+        solicitud.setCorreo("juan.perez@example.com");
+        solicitud.setCedula(987654321);
+        solicitud.setSalario(5000);
+        solicitud.setGastos(1000);
+
+        when(modelMapper.map(any(SolicitudesDto.class), eq(Solicitud.class))).thenReturn(solicitud);
+        when(repoSoli.save(any(Solicitud.class))).thenReturn(solicitud);
+        when(modelMapper.map(any(Solicitud.class), eq(SolicitudesDto.class))).thenReturn(solicitudDto);
+
+        SolicitudesDto result = servicioSolicitudes.registrar(solicitudDto);
+
+        assertEquals(solicitudDto, result);
+
+        verify(modelMapper, times(1)).map(any(SolicitudesDto.class), eq(Solicitud.class));
+        verify(repoSoli, times(1)).save(any(Solicitud.class));
+        verify(modelMapper, times(1)).map(any(Solicitud.class), eq(SolicitudesDto.class));
     }
 }
