@@ -18,14 +18,10 @@ public class SolicitudesDto implements Serializable {
     private String nombre;
     @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
-    //@NotBlank(message = "El celular es obligatorio")
     private int celular;
     @NotBlank(message = "El correo es obligatorio")
     private String correo;
-    //@NotBlank(message = "El documento es obligatorio")
     private int cedula;
-   // @NotBlank(message = "El salario es obligatorio")
     private int salario;
-    //@NotBlank(message = "El gasto mensual es obligatorio")
     private int gastos;
 }

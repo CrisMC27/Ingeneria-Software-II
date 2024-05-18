@@ -2,43 +2,53 @@ package co.edu.ucentral.tarjetac.controladores;
 
 import co.edu.ucentral.tarjetac.dto.SolicitudesDto;
 import co.edu.ucentral.tarjetac.servicios.ServicioSolicitudes;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import java.util.Collections;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WebMvcTest(ControladorSolicutudesANG.class)
+class ControladorSolicutudesANGTest {
 
+    @Autowired
+    private MockMvc mockMvc;
 
-public class ControladorSolicutudesANGTest {
+    @MockBean
+    private ServicioSolicitudes servicioSolicitudes;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @InjectMocks
     private ControladorSolicutudesANG controladorSolicutudesANG;
-
-    @Mock
-    private ServicioSolicitudes servicioSolicitudes;
-
-    @Mock
-    private BindingResult bindingResult;
-
-    @Mock
-    private WebRequest webRequest;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
     }
 
+    @DisplayName("Test crear solicitud API")
     @Test
-    public void testCrear() {
+    void testCrearSolicitudAPI() throws Exception {
         SolicitudesDto solicitudDto = new SolicitudesDto();
         solicitudDto.setNombre("Juan");
         solicitudDto.setApellido("Perez");
@@ -48,13 +58,16 @@ public class ControladorSolicutudesANGTest {
         solicitudDto.setSalario(5000);
         solicitudDto.setGastos(1000);
 
-        when(servicioSolicitudes.registrar(any(SolicitudesDto.class))).thenReturn(solicitudDto);
+        given(servicioSolicitudes.registrar(any(SolicitudesDto.class))).willReturn(solicitudDto);
 
-        ResponseEntity<SolicitudesDto> response = controladorSolicutudesANG.crear(solicitudDto);
+        ResultActions response = mockMvc.perform(post("/api/solicitudes/registro")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(solicitudDto)));
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(solicitudDto, response.getBody());
+        response.andExpect(status().isCreated());
 
         verify(servicioSolicitudes, times(1)).registrar(any(SolicitudesDto.class));
     }
+
+
 }
