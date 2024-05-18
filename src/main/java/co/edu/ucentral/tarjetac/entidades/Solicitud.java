@@ -30,13 +30,13 @@ public class Solicitud implements Serializable{
     @Column(name = "SOL_APELLIDOS", nullable = false)
     private String apellido;
 
-    @Column(name = "SOL_CELULAR", nullable = false)
+    @Column(name = "SOL_CELULAR", length = 10, nullable = false)
     private int celular;
 
     @Column(name = "SOL_CORREO", nullable = false)
     private String correo;
 
-    @Column(name = "SOL_DOCUMENTO", nullable = false)
+    @Column(name = "SOL_DOCUMENTO", length = 10, nullable = false)
     private int cedula;
 
     @Column(name = "SOL_SALARIO", nullable = false)
@@ -45,4 +45,13 @@ public class Solicitud implements Serializable{
     @Column(name = "SOL_GASTOS", nullable = false)
     private long gastos;
 
+    public void actualizarSolicitud(String nombre, String apellido, int celular, String correo,int cedula, int salario, int gastos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.celular = celular;
+        this.correo = correo;
+        this.cedula = cedula;
+        this.salario = salario;
+        this.gastos = gastos;
+    }
 }
