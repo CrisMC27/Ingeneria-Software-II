@@ -88,7 +88,7 @@ class RepositorioSolicitudesTest {
         testEntityManager.flush();
 
 
-        solicitudPersistida.actualizarSolicitud("Juan", "Ponte", 13133, "coreo@gmail.com", 4521432, 575432,63627);
+        solicitudPersistida.actualizarSolicitud("Juan", "Ponte", 13133, "coreo@gmail.com", 4521432, 575432L,63627L);
         Solicitud solicitudActualizada = repositorioSolicitudes.save(solicitudPersistida);
 
 
@@ -98,8 +98,8 @@ class RepositorioSolicitudesTest {
         assertThat(solicitudActualizada.getCelular()).isEqualTo(13133);
         assertThat(solicitudActualizada.getCorreo()).isEqualTo("coreo@gmail.com");
         assertThat(solicitudActualizada.getCedula()).isEqualTo(4521432);
-        assertThat(solicitudActualizada.getSalario()).isEqualTo(575432);
-        assertThat(solicitudActualizada.getGastos()).isEqualTo(63627);
+        assertThat(solicitudActualizada.getSalario()).isEqualTo(575432L);
+        assertThat(solicitudActualizada.getGastos()).isEqualTo(63627L);
     }
     @DisplayName("Test de borrar una solicitud")
     @Test
