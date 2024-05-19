@@ -1,13 +1,12 @@
 package co.edu.ucentral.tarjetac.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

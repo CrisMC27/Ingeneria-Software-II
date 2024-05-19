@@ -48,4 +48,5 @@ public class Tarjeta implements Serializable {
 
     @Column(name = "TAR_SALDO_UTILIZADO", nullable = false)
     private long saldo;
+
 }
