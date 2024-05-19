@@ -49,13 +49,4 @@ public class Tarjeta implements Serializable {
     @Column(name = "TAR_SALDO_UTILIZADO", nullable = false)
     private long saldo;
 
-    public void actualizarTarjeta(long numerotarjeta, Date fecha_vec, int documento, long cupo, Date fecha_cor, Date fecha_lim, long saldo){
-     this.numerotarjeta = numerotarjeta;
-     this.fecha_vec = fecha_vec;
-     this.documento = documento;
-     this.cupo = cupo;
-     this.fecha_cor = fecha_cor;
-     this.fecha_lim = fecha_lim;
-     this.saldo = saldo;
-    }
 }
