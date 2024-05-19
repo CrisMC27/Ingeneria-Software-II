@@ -36,7 +36,7 @@ public class ServicioSolicitudesTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize mock data
+
         Solicitud solicitud1 = new Solicitud();
         Solicitud solicitud2 = new Solicitud();
         solicitudList = Arrays.asList(solicitud1, solicitud2);
@@ -48,17 +48,14 @@ public class ServicioSolicitudesTest {
 
     @Test
     void obtenerSolicitudesTest() {
-        // Mock the behavior of repoSoli.findSolicitudesBy()
+
         when(repoSoli.findSolicitudesBy()).thenReturn(solicitudList);
 
-        // Mock the behavior of modelMapper.map()
         Type listType = new TypeToken<List<SolicitudesDto>>() {}.getType();
         when(modelMapper.map(solicitudList, listType)).thenReturn(solicitudesDtoList);
 
-        // Call the service method
         List<SolicitudesDto> result = servicioSolicitudes.obtenerSolicitudes();
 
-        // Validate the result
         assertEquals(solicitudesDtoList, result);
     }
 }
