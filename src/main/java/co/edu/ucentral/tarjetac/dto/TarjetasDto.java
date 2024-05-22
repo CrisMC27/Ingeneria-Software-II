@@ -18,6 +18,7 @@ public class TarjetasDto implements Serializable {
     @NotBlank(message = "La fecha de vencimiento es obligatoria")
     private Date fecha_vec;
     private int documento;
+    private int numerocuotas;
     private long cupo;
     @NotBlank(message = "La fecha de corte es obligatoria")
     private Date fecha_cor;
