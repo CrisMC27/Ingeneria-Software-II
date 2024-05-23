@@ -12,7 +12,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-
 public class ServicioTarjetas implements Serializable {
     private ModelMapper modelMapper;
     private final RepositorioTarjetas repotarj;
@@ -21,16 +20,17 @@ public class ServicioTarjetas implements Serializable {
         TypeToken<List<TarjetasDto>> typeToken = new TypeToken<>(){};
         return modelMapper.map(repotarj.findTarjetasBy(), typeToken.getType());
     }
+
     public TarjetasDto obtenerTarjetasByNum(long numT) {
-        TypeToken<List<TarjetasDto>> typeToken = new TypeToken<>(){};
         List<Tarjeta> listaT = repotarj.findTarjetasByNumT(numT);
         if(!listaT.isEmpty())
-            return modelMapper.map(listaT.get(0), typeToken.getType());
+            return modelMapper.map(listaT.get(0), TarjetasDto.class);
         return null;
     }
-    public List<TarjetasDto> updateTarjetas(TarjetasDto, tarjeta) {
-        TypeToken<List<TarjetasDto>> typeToken = new TypeToken<>(){};
-        return modelMapper.map(repotarj.findTarjetasBy(), typeToken.getType());
-    }
 
+    public TarjetasDto actualizarTarjeta(TarjetasDto tarjetaDto) {
+        Tarjeta tarjeta = modelMapper.map(tarjetaDto, Tarjeta.class);
+        repotarj.save(tarjeta);
+        return modelMapper.map(tarjeta, TarjetasDto.class);
+    }
 }
