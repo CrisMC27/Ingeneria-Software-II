@@ -28,9 +28,8 @@ public class ServicioTarjetas implements Serializable {
             return modelMapper.map(listaT.get(0), typeToken.getType());
         return null;
     }
-    public List<TarjetasDto> updateTarjetas(TarjetasDto, tarjeta) {
+    public List<TarjetasDto> updateTarjetas(TarjetasDto tarjeta) {
         TypeToken<List<TarjetasDto>> typeToken = new TypeToken<>(){};
         return modelMapper.map(repotarj.findTarjetasBy(), typeToken.getType());
     }
-
 }

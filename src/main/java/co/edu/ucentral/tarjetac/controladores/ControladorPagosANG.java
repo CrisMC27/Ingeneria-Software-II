@@ -27,15 +27,14 @@ public class ControladorPagosANG {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <PagosDto> crear(@Validated @RequestBody PagosDto entityDto){
         entityDto = servicioPagos.registrar(entityDto);
-        return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
-
-
         // consultar por tarjeta
         TarjetasDto laTar = this.servicioTarjetas.obtenerTarjetasByNum(entityDto.getNumerotar());
         // actualizar tarjeta
         if (laTar != null){
-            laTar.setCupo(laTar.getCupo()+ entityDto.getMonto());
-            servicioTarjetas.updateTarjetas();
+            //laTar.setCupo(laTar.getCupo()+ entityDto.getMonto());
+            laTar.setSaldo(laTar.getSaldo()- entityDto.getMonto());
+            servicioTarjetas.updateTarjetas(laTar);
         }
+        return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
     }
 }
