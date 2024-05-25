@@ -35,6 +35,9 @@ public class Tarjeta implements Serializable {
     @Column(name = "TAR_DOCUMENTO", nullable = false)
     private int documento;
 
+    @Column(name = "TAR_NUMERO_DE_CUOTAS", nullable = false)
+    private int numerocuotas;
+
     @Column(name = "TAR_CUPO_DISPONIBLE", nullable = false)
     private long cupo;
 
