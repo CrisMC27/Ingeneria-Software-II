@@ -13,4 +13,6 @@ import java.util.List;
 public interface RepositorioSolicitudes extends CrudRepository<Solicitud, Long >, JpaSpecificationExecutor<Solicitud> {
     @Query("SELECT s FROM Solicitud s " )
     List<Solicitud> findSolicitudesBy();
+    @Query("SELECT s FROM Solicitud s WHERE s.numerosolicitud = :numSolicitud")
+    List<Solicitud> findSolicitudesByNumS(long numSolicitud);
 }

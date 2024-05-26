@@ -29,11 +29,20 @@ public class ControladorSolicutudesANG {
 
         return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudes());
     }
-
+    @GetMapping("/{numerosolicitud}")
+    public ResponseEntity<SolicitudesDto>obtenerPorId(@PathVariable ("numerosolicitud")Long numerosolicitud) {
+        return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudByNum(numerosolicitud));
+    }
     @PostMapping("/registro")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<SolicitudesDto> crear(@Validated @RequestBody SolicitudesDto entityDto) {
         entityDto = servicioSolicitudes.registrar(entityDto);
+        return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
+    }
+    @PostMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<SolicitudesDto> modificar(@Validated @RequestBody SolicitudesDto entityDto) {
+        entityDto = servicioSolicitudes.actualizarSolicitud(entityDto);
         return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
     }
 

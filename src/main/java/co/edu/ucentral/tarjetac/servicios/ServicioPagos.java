@@ -30,6 +30,10 @@ public class ServicioPagos implements Serializable {
             tarjeta.setSaldo(tarjeta.getSaldo() - pagosDto.getMonto());
             servicioTarjetas.actualizarTarjeta(tarjeta);
         }
+        if (tarjeta != null){
+            tarjeta.setCupo(tarjeta.getCupo() + pagosDto.getMonto());
+            servicioTarjetas.actualizarTarjeta(tarjeta);
+        }
 
         return modelMapper.map(pago, PagosDto.class);
     }
