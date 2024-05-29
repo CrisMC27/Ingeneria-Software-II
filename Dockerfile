@@ -1,4 +1,16 @@
-FROM ubuntu:latest
-LABEL authors="crist"
+FROM maven:3.8.3-openjdk-17
+ENV JAVA_HOME /usr/java/openjdk-17
+RUN export JAVA_HOME
 
-ENTRYPOINT ["top", "-b"]
+RUN mkdir -p /app
+WORKDIR /app
+COPY pom.xml /app
+COPY application.properties /app
+COPY src /app/src
+
+RUN mvn -f pom.xml clean package
+
+RUN cp target/*.jar app.jar
+EXPOSE 8744
+
+ENTRYPOINT ["java","-jar","app.jar","--spring.config.location=application.properties"]
