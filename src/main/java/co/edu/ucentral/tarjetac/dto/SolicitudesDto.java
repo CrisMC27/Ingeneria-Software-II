@@ -16,10 +16,10 @@ public class SolicitudesDto implements Serializable {
     private String nombre;
     @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
-    private int celular;
+    private long celular;
     @NotBlank(message = "El correo es obligatorio")
     private String correo;
-    private int cedula;
-    private int salario;
-    private int gastos;
+    private long cedula;
+    private long salario;
+    private long gastos;
 }

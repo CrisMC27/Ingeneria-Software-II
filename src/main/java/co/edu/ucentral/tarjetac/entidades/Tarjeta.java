@@ -33,7 +33,7 @@ public class Tarjeta implements Serializable {
     private Date fecha_vec;
 
     @Column(name = "TAR_DOCUMENTO", nullable = false)
-    private int documento;
+    private long documento;
 
     @Column(name = "TAR_NUMERO_DE_CUOTAS", nullable = false)
     private int numerocuotas;
