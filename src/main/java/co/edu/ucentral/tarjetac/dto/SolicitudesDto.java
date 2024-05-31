@@ -24,4 +24,5 @@ public class SolicitudesDto implements Serializable {
     private long gastos;
     @NotBlank(message = "El comentario es obligatorio")
     private String comentario;
+
 }
