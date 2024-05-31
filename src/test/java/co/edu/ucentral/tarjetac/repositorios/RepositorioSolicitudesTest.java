@@ -25,9 +25,9 @@ class RepositorioSolicitudesTest {
         Solicitud solicitud = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
-                .celular(1234567890)
+                .celular(1234567890L)
                 .correo("correo@gmail.com")
-                .cedula(1234567890)
+                .cedula(1234567890L)
                 .salario(43453L)
                 .gastos(345634L)
                 .build();
@@ -45,9 +45,9 @@ class RepositorioSolicitudesTest {
         Solicitud solicitud1 = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
-                .celular(1234567890)
+                .celular(1234567890L)
                 .correo("correo@gmail.com")
-                .cedula(1234567890)
+                .cedula(1234567890L)
                 .salario(43453L)
                 .gastos(345634L)
                 .build();
@@ -55,9 +55,9 @@ class RepositorioSolicitudesTest {
         Solicitud solicitud2 = Solicitud.builder()
                 .nombre("Juan")
                 .apellido("Perez")
-                .celular(987654321)
+                .celular(987654321L)
                 .correo("juanp@gmail.com")
-                .cedula(987654321)
+                .cedula(987654321L)
                 .salario(50000L)
                 .gastos(30000L)
                 .build();
@@ -78,9 +78,9 @@ class RepositorioSolicitudesTest {
         Solicitud solicitud = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
-                .celular(1234567890)
+                .celular(1234567890L)
                 .correo("correo@gmail.com")
-                .cedula(1234567890)
+                .cedula(1234567890L)
                 .salario(43453L)
                 .gastos(345634L)
                 .build();
@@ -88,16 +88,16 @@ class RepositorioSolicitudesTest {
         testEntityManager.flush();
 
 
-        solicitudPersistida.actualizarSolicitud("Juan", "Ponte", 13133, "coreo@gmail.com", 4521432, 575432L,63627L);
+        solicitudPersistida.actualizarSolicitud("Juan", "Ponte", 13133L, "coreo@gmail.com", 4521432L, 575432L,63627L);
         Solicitud solicitudActualizada = repositorioSolicitudes.save(solicitudPersistida);
 
 
         assertThat(solicitudActualizada).isNotNull();
         assertThat(solicitudActualizada.getNombre()).isEqualTo("Juan");
         assertThat(solicitudActualizada.getApellido()).isEqualTo("Ponte");
-        assertThat(solicitudActualizada.getCelular()).isEqualTo(13133);
+        assertThat(solicitudActualizada.getCelular()).isEqualTo(13133L);
         assertThat(solicitudActualizada.getCorreo()).isEqualTo("coreo@gmail.com");
-        assertThat(solicitudActualizada.getCedula()).isEqualTo(4521432);
+        assertThat(solicitudActualizada.getCedula()).isEqualTo(4521432L);
         assertThat(solicitudActualizada.getSalario()).isEqualTo(575432L);
         assertThat(solicitudActualizada.getGastos()).isEqualTo(63627L);
     }
@@ -108,9 +108,9 @@ class RepositorioSolicitudesTest {
         Solicitud solicitud = Solicitud.builder()
                 .nombre("Kelly")
                 .apellido("Importa")
-                .celular(1234567890)
+                .celular(1234567890L)
                 .correo("correo@gmail.com")
-                .cedula(1234567890)
+                .cedula(1234567890L)
                 .salario(43453L)
                 .gastos(345634L)
                 .build();

@@ -1,7 +1,16 @@
-FROM amazoncorretto:17-alpine-jdk
+FROM maven:3.8.3-openjdk-17
+ENV JAVA_HOME /usr/java/openjdk-17
+RUN export JAVA_HOME
 
-LABEL authors="cristian y sergio"
+RUN mkdir -p /app
+WORKDIR /app
+COPY pom.xml /app
+COPY application.properties /app
+COPY src /app/src
 
-COPY /target/ app.jar
+RUN mvn -f pom.xml clean package
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+RUN cp target/*.jar app.jar
+EXPOSE 8746
+
+ENTRYPOINT ["java","-jar","app.jar","--spring.config.location=application.properties"]
