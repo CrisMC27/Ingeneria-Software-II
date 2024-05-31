@@ -35,7 +35,7 @@ class RepositorioTarjetasTest {
                 .serial(32L)
                 .numerotarjeta(5432L)
                 .fecha_vec(fechaVec)
-                .documento(678989)
+                .documento(678989L)
                 .cupo(79870L)
                 .fecha_cor(fechaVec)
                 .fecha_lim(fechaVec)
@@ -58,7 +58,7 @@ class RepositorioTarjetasTest {
                 .builder()
                 .numerotarjeta(5432L)
                 .fecha_vec(fechaVec)
-                .documento(678989)
+                .documento(678989L)
                 .cupo(79870L)
                 .fecha_cor(fechaVec)
                 .fecha_lim(fechaVec)
@@ -69,7 +69,7 @@ class RepositorioTarjetasTest {
                 .builder()
                 .numerotarjeta(5432L)
                 .fecha_vec(fechaVec)
-                .documento(877893)
+                .documento(877893L)
                 .cupo(67098423L)
                 .fecha_cor(fechaVec)
                 .fecha_lim(fechaVec)
@@ -97,7 +97,7 @@ class RepositorioTarjetasTest {
                 .builder()
                 .numerotarjeta(5432L)
                 .fecha_vec(fechaVec)
-                .documento(678989)
+                .documento(678989L)
                 .cupo(79870L)
                 .fecha_cor(fechaVec)
                 .fecha_lim(fechaVec)
@@ -111,7 +111,7 @@ class RepositorioTarjetasTest {
 
         tarjeta1.setNumerotarjeta(53276L);
         tarjeta1.setFecha_vec(nuevaFechaVec);
-        tarjeta1.setDocumento(78102);
+        tarjeta1.setDocumento(78102L);
         tarjeta1.setCupo(38902L);
         tarjeta1.setFecha_cor(nuevaFechaVec);
         tarjeta1.setFecha_lim(nuevaFechaVec);
@@ -122,7 +122,7 @@ class RepositorioTarjetasTest {
         assertThat(tarjetaActualizada).isNotNull();
         assertThat(tarjetaActualizada.getNumerotarjeta()).isEqualTo(53276L);
         assertThat(tarjetaActualizada.getFecha_vec()).isEqualTo(nuevaFechaVec);
-        assertThat(tarjetaActualizada.getDocumento()).isEqualTo(78102);
+        assertThat(tarjetaActualizada.getDocumento()).isEqualTo(78102L);
         assertThat(tarjetaActualizada.getCupo()).isEqualTo(38902L);
         assertThat(tarjetaActualizada.getFecha_cor()).isEqualTo(nuevaFechaVec);
         assertThat(tarjetaActualizada.getFecha_lim()).isEqualTo(nuevaFechaVec);
@@ -139,7 +139,7 @@ class RepositorioTarjetasTest {
                 .builder()
                 .numerotarjeta(5432L)
                 .fecha_vec(fechaVec)
-                .documento(678989)
+                .documento(678989L)
                 .cupo(79870L)
                 .fecha_cor(fechaVec)
                 .fecha_lim(fechaVec)

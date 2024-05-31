@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/solicitudes")
 @CrossOrigin(origins = "${spring.webmvc.cors.allowed-origins}",
-        methods = {RequestMethod.GET,RequestMethod.POST})
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 
 
 public class ControladorSolicutudesANG {
@@ -30,6 +30,11 @@ public class ControladorSolicutudesANG {
         return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudes());
     }
 
+    @GetMapping("/{numerosolicitud}")
+    public ResponseEntity<SolicitudesDto> obtenerPorId(@PathVariable("numerosolicitud") Long numerosolicitud) {
+        return ResponseEntity.ok(servicioSolicitudes.obtenerSolicitudByNum(numerosolicitud));
+    }
+
     @PostMapping("/registro")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<SolicitudesDto> crear(@Validated @RequestBody SolicitudesDto entityDto) {
@@ -37,4 +42,30 @@ public class ControladorSolicutudesANG {
         return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
     }
 
+    @PostMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<SolicitudesDto> modificar(@Validated @RequestBody SolicitudesDto entityDto) {
+        entityDto = servicioSolicitudes.actualizarSolicitud(entityDto);
+        return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/crear-tarjeta/{numerosolicitud}")
+    public ResponseEntity<SolicitudesDto> crearTarjeta(@PathVariable("numerosolicitud") Long numerosolicitud) {
+        SolicitudesDto solicitud = servicioSolicitudes.obtenerSolicitudByNum(numerosolicitud);
+        if (solicitud == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        solicitud = servicioSolicitudes.actualizarSolicitud(solicitud);
+        return new ResponseEntity<>(solicitud, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{numerosolicitud}")
+    public ResponseEntity<Void> eliminar(@PathVariable("numerosolicitud") Long numerosolicitud) {
+        try {
+            servicioSolicitudes.eliminarSolicitud(numerosolicitud);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

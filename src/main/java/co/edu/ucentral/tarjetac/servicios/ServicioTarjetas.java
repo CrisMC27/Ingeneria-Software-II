@@ -20,7 +20,10 @@ public class ServicioTarjetas implements Serializable {
         TypeToken<List<TarjetasDto>> typeToken = new TypeToken<>(){};
         return modelMapper.map(repotarj.findTarjetasBy(), typeToken.getType());
     }
-
+    public TarjetasDto registrar(TarjetasDto tarjetasDto){
+        Tarjeta tarjeta = repotarj.save(modelMapper.map(tarjetasDto, Tarjeta.class));
+        return modelMapper.map(tarjeta, TarjetasDto.class);
+    }
     public TarjetasDto obtenerTarjetasByNum(long numT) {
         List<Tarjeta> listaT = repotarj.findTarjetasByNumT(numT);
         if(!listaT.isEmpty())
